@@ -1,0 +1,42 @@
+In this article, we evaluated two numerical methods implemented
+in OpenFOAM⃝R concerning their suitability for interface
+resolving simulations of submillimetre air-bubbles in water.
+The code interFoam implements an algebraic volume-of-fluid
+method for a nominally sharp interface with standard continuum
+surface force and curvature computations, whereas phaseField-
+Foam is based on the phase-field method with diffuse interface
+representation with capillary term in free energy formulation.
+A nominally static circular bubble surrounded by quiescent liquid
+in absence of gravity serves as test case. The two-dimensional
+simulations explore the impact in variation of mesh size (h) of the
+uniform grid and bubble size. Evaluating the bubble shape, mass
+conservation, the Young–Laplace pressure jump and the magnitude
+of spurious currents serves as measures for the accuracy of
+the solvers.
+****
+A reference is drawn to investigations in literature by examining
+the solvers on two test cases with simplified conditions,
+i.e. matched density/viscosity and an artificially large inviscid drop.
+The code interFoam reveals spurious currents not decreasing
+with mesh resolution and several orders of magnitude larger than
+in phaseFieldFoam, where they decrease with second order convergence.
+This convergence is attributed to the absence of curvature
+computation, the interface thickness being controlled by the
+capillary width (ε) independent from mesh resolution, and an easy
+to achieve balanced discretisation between pressure gradient and
+capillary term.
+****
+In the numerically challenging case of a submillimetre air bubble
+in quiescent water, spurious currents remain independent on
+the mesh size losing second order convergence in phaseField-
+Foam. However, there, the magnitude of the spurious currents
+remains five orders in magnitude below interFoam. The large
+asymmetric spurious currents in interFoam significantly displace
+and deform the bubble especially at higher resolution where the
+shape is oscillating, while the bubble remains always circular and
+preserving its initial position in phaseFieldFoam. The latter code
+predicts the Laplace pressure jump below an error of 1% while
+the former underestimates by about 13%. The code interFoam
+exhibits very low errors in mass conservation below 0.1% on fine
+grids whereas phaseFieldFoam shrinks the bubble in the course
+of the simulations while globally conserving the order parameter.
