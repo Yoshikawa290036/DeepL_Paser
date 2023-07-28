@@ -103,7 +103,7 @@ if __name__ == '__main__':
         new_jp = fix_text(tr_jp)
         output.append(new_jp + '\n')
 
-    with open("text/out.txt", 'w') as f:
+    with open("text/out.tex", 'w') as f:
         f.writelines(output)
 
     for out in output:
